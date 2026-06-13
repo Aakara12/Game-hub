@@ -6,16 +6,16 @@
 
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: #0f172a;
       color: white;
-      text-align: center;
       margin: 0;
       padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 42px;
       margin-bottom: 30px;
     }
 
@@ -28,16 +28,38 @@
 
     .card {
       background: #1e293b;
-      width: 260px;
-      padding: 20px;
+      width: 280px;
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      padding-bottom: 15px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card h2 {
+      margin: 10px 0 5px 0;
+    }
+
+    .card p {
+      margin: 5px;
+      font-size: 14px;
+      color: #cbd5e1;
     }
 
     .btn {
       display: inline-block;
       margin-top: 10px;
-      padding: 10px 15px;
+      padding: 10px 18px;
       background: #38bdf8;
       color: black;
       text-decoration: none;
@@ -59,14 +81,16 @@
 
   <!-- Rhythm Runner -->
   <div class="card">
+    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800">
     <h2>🎵 Rhythm Runner</h2>
     <a class="btn" href="https://rhythm-runner--AaKaRa.replit.app" target="_blank">
       Pelaa
     </a>
   </div>
 
-  <!-- Geometry Challenge (2-player) -->
+  <!-- Geometry Challenge -->
   <div class="card">
+    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800">
     <h2>📐 Geometry Challenge</h2>
     <p>2 pelaajan peli</p>
     <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">
@@ -76,6 +100,7 @@
 
   <!-- Eight Ball Arena -->
   <div class="card">
+    <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?w=800">
     <h2>🎱 Eight Ball Arena</h2>
     <a class="btn" href="https://eight-ball-arena--aadarantalaa.replit.app/" target="_blank">
       Pelaa
