@@ -6,7 +6,7 @@
 
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: #0f172a;
       color: white;
       text-align: center;
@@ -19,24 +19,25 @@
       margin-bottom: 30px;
     }
 
-    .game-card {
-      background: #1e293b;
-      width: 300px;
-      margin: auto;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
     }
 
-    .game-card img {
-      width: 100%;
-      border-radius: 10px;
+    .card {
+      background: #1e293b;
+      width: 260px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
     }
 
     .btn {
       display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
+      margin-top: 10px;
+      padding: 10px 15px;
       background: #38bdf8;
       color: black;
       text-decoration: none;
@@ -52,21 +53,36 @@
 
 <body>
 
-  <h1>🎮 Game Hub</h1>
+<h1>🎮 Game Hub</h1>
 
-  <div class="game-card">
+<div class="grid">
 
-    <!-- Sun kuva tähän -->
-    <img src="SUN_KUVA_URL_TÄHÄN" alt="Game image">
-
-    <h2>Rhythm Runner</h2>
-
+  <!-- Rhythm Runner -->
+  <div class="card">
+    <h2>🎵 Rhythm Runner</h2>
     <a class="btn" href="https://rhythm-runner--AaKaRa.replit.app" target="_blank">
-      Pelaa nyt 🎵
+      Pelaa
     </a>
-
   </div>
+
+  <!-- Geometry Challenge (2-player) -->
+  <div class="card">
+    <h2>📐 Geometry Challenge</h2>
+    <p>2 pelaajan peli</p>
+    <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">
+      Pelaa
+    </a>
+  </div>
+
+  <!-- Eight Ball Arena -->
+  <div class="card">
+    <h2>🎱 Eight Ball Arena</h2>
+    <a class="btn" href="https://eight-ball-arena--aadarantalaa.replit.app/" target="_blank">
+      Pelaa
+    </a>
+  </div>
+
+</div>
 
 </body>
 </html>
-
