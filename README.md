@@ -1,1 +1,1 @@
-Game hub where i put my own games and maybe someday you out your games
+Game hub. I put my own games here so everyone can play them. 
