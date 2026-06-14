@@ -5,201 +5,162 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Hub</title>
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#0b1220;
-  color:white;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0f1a;
+    color: white;
 }
 
-/* NAV */
-.navbar{
-  position:sticky;
-  top:0;
-  display:flex;
-  justify-content:space-between;
-  padding:15px 20px;
-  background:#111827;
+/* HEADER */
+header {
+    background: linear-gradient(90deg, #00ffcc, #0066ff);
+    padding: 25px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
-.navbar a{
-  color:white;
-  margin:0 10px;
-  text-decoration:none;
-}
-
-.navbar a:hover{color:#38bdf8;}
-
-/* HERO */
-.hero{
-  text-align:center;
-  padding:40px 20px;
-}
-
-.search{
-  width:60%;
-  padding:10px;
-  border-radius:10px;
-  border:none;
+/* CATEGORY TITLE */
+.category {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ffcc;
 }
 
 /* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-  padding:20px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 0 20px 30px 20px;
 }
 
-/* CARD */
-.card{
-  background:#1f2937;
-  border-radius:12px;
-  overflow:hidden;
+/* GAME CARD */
+.card {
+    background: #141b2d;
+    border-radius: 15px;
+    padding: 15px;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
 }
 
-.card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #00ffcc;
 }
 
-.card h3{
-  margin:10px;
+/* fake thumbnail */
+.thumb {
+    height: 110px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #00ffcc, #0066ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
 }
 
-.btn{
-  display:inline-block;
-  margin:10px;
-  padding:8px 12px;
-  background:#38bdf8;
-  color:black;
-  text-decoration:none;
-  border-radius:8px;
+/* title */
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.like{
-  margin:10px;
-  background:#ef4444;
-  border:none;
-  color:white;
-  padding:6px 10px;
-  border-radius:8px;
-  cursor:pointer;
+/* button */
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #00ffcc;
+    color: black;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #00c2a8;
 }
 </style>
 </head>
 
 <body>
 
-<div class="navbar">
-  <div><b>🎮 Game Hub</b></div>
-  <div>
-    <a href="#games">Games</a>
-    <a href="profile.html">Profile</a>
-  </div>
-</div>
+<header>🎮 GAME HUB</header>
 
-<div class="hero">
-  <h1>GAME HUB</h1>
-  <p>Play & Discover Games</p>
+<!-- ARCADE -->
+<div class="category">🔥 Arcade Games</div>
+<div class="grid">
 
-  <input class="search" id="search" placeholder="Search games..." onkeyup="searchGames()">
+    <div class="card">
+        <div class="thumb">🏓</div>
+        <div class="title">Ping Pong Duel</div>
+        <a class="btn" href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
+    </div>
 
-  <br><br>
-
-  <p id="userText">Not logged in</p>
-  <button onclick="login()">Login with Google</button>
-</div>
-
-<div id="games" class="grid">
-
-  <!-- GAME 1 -->
-  <div class="card">
-    <img src="images/game1.png">
-    <h3>Geometry Challenge</h3>
-    <a class="btn" href="#">Play</a>
-    <button class="like" onclick="like('g1')">❤️ <span id="g1">0</span></button>
-  </div>
-
-  <!-- GAME 2 -->
-  <div class="card">
-    <img src="images/game2.png">
-    <h3>Brain Puzzle</h3>
-    <a class="btn" href="#">Play</a>
-    <button class="like" onclick="like('g2')">❤️ <span id="g2">0</span></button>
-  </div>
-
-  <!-- GAME 3 -->
-  <div class="card">
-    <img src="images/game3.png">
-    <h3>Ping Pong Duel</h3>
-    <a class="btn" href="#">Play</a>
-    <button class="like" onclick="like('g3')">❤️ <span id="g3">0</span></button>
-  </div>
+    <div class="card">
+        <div class="thumb">🚗</div>
+        <div class="title">Auto Arena</div>
+        <a class="btn" href="https://replit.com/@Rantala12/Auto-Arena" target="_blank">Play</a>
+    </div>
 
 </div>
 
-<script>
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_ID",
-  appId: "YOUR_APP"
-};
+<!-- GEOMETRY -->
+<div class="category">🟢 Geometry Games</div>
+<div class="grid">
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+    <div class="card">
+        <div class="thumb">🟩</div>
+        <div class="title">Geometry Challenge</div>
+        <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">Play</a>
+    </div>
 
-/* LOGIN */
-function login(){
-  const provider = new firebase.auth.GoogleAuthProvider();
+    <div class="card">
+        <div class="thumb">⬛</div>
+        <div class="title">Geometry Dash</div>
+        <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Dash" target="_blank">Play</a>
+    </div>
 
-  auth.signInWithPopup(provider).then(user=>{
-    document.getElementById("userText").innerText =
-      "Logged in as: " + user.user.displayName;
-  });
-}
+    <div class="card">
+        <div class="thumb">🟦</div>
+        <div class="title">Geometry Leveler</div>
+        <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Leveler" target="_blank">Play</a>
+    </div>
 
-auth.onAuthStateChanged(user=>{
-  if(user){
-    document.getElementById("userText").innerText =
-      "Logged in as: " + user.displayName;
-  }
-});
+    <div class="card">
+        <div class="thumb">📏</div>
+        <div class="title">Geometry Dash Levels</div>
+        <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Dash-Levels" target="_blank">Play</a>
+    </div>
 
-/* LIKES (local for now, voidaan myöhemmin tehdä Firebase) */
-function like(id){
-  let v = localStorage.getItem(id) || 0;
-  v++;
-  localStorage.setItem(id, v);
-  document.getElementById(id).innerText = v;
-}
+</div>
 
-/* SEARCH */
-function searchGames(){
-  let input = document.getElementById("search").value.toLowerCase();
-  let cards = document.getElementsByClassName("card");
+<!-- PUZZLE -->
+<div class="category">🧠 Puzzle Games</div>
+<div class="grid">
 
-  for(let c of cards){
-    c.style.display = c.innerText.toLowerCase().includes(input)
-    ? "block"
-    : "none";
-  }
-}
+    <div class="card">
+        <div class="thumb">🔴🟡</div>
+        <div class="title">Connect Four</div>
+        <a class="btn" href="https://replit.com/@aadarantala/Connect-Four" target="_blank">Play</a>
+    </div>
 
-/* LOAD LIKES */
-window.onload = ()=>{
-  ["g1","g2","g3"].forEach(id=>{
-    document.getElementById(id).innerText =
-      localStorage.getItem(id) || 0;
-  });
-};
-</script>
+    <div class="card">
+        <div class="thumb">🧩</div>
+        <div class="title">Buzzle Masters</div>
+        <a class="btn" href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
+    </div>
+
+</div>
 
 </body>
 </html>
