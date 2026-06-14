@@ -226,8 +226,4 @@ window.onload = function(){
     document.getElementById("userText").innerText = "Logged in as: " + user;
   }
 }
-["geo1","geo2","geo3","geo4"].forEach(id=>{
-  let likes = localStorage.getItem(id) || 0;
-  let el = document.getElementById(id);
-  if(el) el.innerText = likes;
-});
+
