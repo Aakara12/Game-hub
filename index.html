@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,212 +7,224 @@
 
 <style>
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(180deg,#2563eb,#0b1220);
-color:white;
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(180deg,#1d4ed8,#0b1220);
+  color:white;
 }
 
+/* NAVBAR */
+.navbar{
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:#0f172a;
+  z-index:1000;
+}
+
+.navbar a{
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+.navbar a:hover{
+  color:#38bdf8;
+}
+
+/* HERO */
 .hero{
-text-align:center;
-padding:60px 20px;
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero h1{
+  font-size:60px;
+  margin:0;
 }
 
 .search{
-width:60%;
-max-width:500px;
-padding:12px;
-border:none;
-border-radius:12px;
+  width:60%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin-top:10px;
 }
 
-.section{
-padding:20px;
-}
-
+/* GRID FIX (TÄRKEÄ) */
 .grid{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:20px;
+  padding:20px;
 }
 
+/* CARD */
 .card{
-width:250px;
-background:#1e293b;
-border-radius:15px;
-overflow:hidden;
-transition:0.2s;
+  background:#1e293b;
+  border-radius:15px;
+  overflow:hidden;
+  transition:0.2s;
 }
 
 .card:hover{
-transform:translateY(-5px);
+  transform:translateY(-6px);
 }
 
 .card img{
-width:100%;
-height:140px;
-object-fit:cover;
+  width:100%;
+  height:140px;
+  object-fit:cover;
 }
 
 .card h3{
-margin:10px;
+  margin:10px;
 }
 
 .tag{
-margin:10px;
-color:#93c5fd;
-font-size:12px;
+  margin:10px;
+  color:#93c5fd;
+  font-size:12px;
 }
 
+/* BUTTON */
 .btn{
-display:inline-block;
-margin:10px;
-padding:8px 12px;
-background:#38bdf8;
-color:black;
-text-decoration:none;
-border-radius:10px;
-font-weight:bold;
+  display:inline-block;
+  margin:10px;
+  padding:8px 12px;
+  background:#38bdf8;
+  color:black;
+  text-decoration:none;
+  border-radius:10px;
 }
 
+/* LIKE FIX */
 .like{
-margin:10px;
-padding:8px;
-border:none;
-border-radius:8px;
-background:#ef4444;
-color:white;
-cursor:pointer;
+  margin:10px;
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  background:#ef4444;
+  color:white;
+  cursor:pointer;
+}
+
+/* SECTION */
+.section{
+  padding:10px 10px 40px 10px;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="hero">
-<h1>🎮 GAME HUB</h1>
-<p>Discover, Play and Rate Amazing Games</p>
-
-<input class="search" id="search" placeholder="Search games..." onkeyup="searchGames()">
-
-<br><br>
-
-<input id="username" placeholder="Username">
-<button onclick="login()">Login</button>
-
-<p id="userText">Not logged in</p>
+<!-- NAV -->
+<div class="navbar">
+  <div><b>🎮 Game Hub</b></div>
+  <div>
+    <a href="#geometry">Geometry</a>
+    <a href="#brain">Brain</a>
+    <a href="#other">Other</a>
+  </div>
 </div>
 
-<div class="section">
-<button class="like" onclick="like('geo1')">
-<h2>📐 Geometry Games</h2>
+<!-- HERO -->
+<div class="hero">
+  <h1>GAME HUB</h1>
+  <p>Discover & Play Games</p>
+
+  <input class="search" id="search" placeholder="Search games..." onkeyup="searchGames()">
+
+  <br><br>
+
+  <input id="username" placeholder="Username">
+  <button onclick="login()">Login</button>
+
+  <p id="userText">Not logged in</p>
+</div>
+
+<!-- GEOMETRY -->
+<div id="geometry" class="section">
+<h2 style="text-align:center;">📐 Geometry Games</h2>
 
 <div class="grid">
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800">
-<button class="like" onclick="like('geo1')">
-❤️ <span id="geo1">0</span>
-</button><h3>Geometry Challenge</h3>
+<h3>Geometry Challenge</h3>
 <p class="tag">Multiplayer</p>
 <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">Play</a>
+<button class="like" onclick="like('geo1')">❤️ <span id="geo1">0</span></button>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800">
-<button class="like" onclick="like('geo1')">
-❤️ <span id="geo1">0</span>
-</button><h3>Geometry Leveler</h3>
+<h3>Geometry Leveler</h3>
 <p class="tag">Puzzle</p>
 <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Leveler" target="_blank">Play</a>
+<button class="like" onclick="like('geo2')">❤️ <span id="geo2">0</span></button>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800">
-<button class="like" onclick="like('geo1')">
-❤️ <span id="geo1">0</span>
-</button><h3>Geometry Dash Levels</h3>
+<h3>Geometry Dash</h3>
 <p class="tag">Platform</p>
 <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Dash-Levels" target="_blank">Play</a>
+<button class="like" onclick="like('geo3')">❤️ <span id="geo3">0</span></button>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800">
-<button class="like" onclick="like('geo1')">
-❤️ <span id="geo1">0</span>
-</button><h3>Rhythm Runner</h3>
+<h3>Rhythm Runner</h3>
 <p class="tag">Music</p>
 <a class="btn" href="https://rhythm-runner--AaKaRa.replit.app" target="_blank">Play</a>
+<button class="like" onclick="like('geo4')">❤️ <span id="geo4">0</span></button>
 </div>
 
 </div>
 </div>
 
-<div class="section">
-<h2>🧠 Brain Games</h2>
+<!-- BRAIN -->
+<div id="brain" class="section">
+<h2 style="text-align:center;">🧠 Brain Games</h2>
 
 <div class="grid">
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1606503153255-59d8b8b7d4b0?w=800">
 <h3>Connect Four</h3>
-<p class="tag">Strategy</p>
-<a class="btn" href="https://replit.com/@aadarantala/Connect-Four" target="_blank">Play</a>
+<a class="btn" href="https://replit.com/@aadarantala/Connect-Four">Play</a>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800">
-<button class="like" onclick="like('geo1')">
-❤️ <span id="geo1">0</span>
-</button><h3>Buzzle Masters</h3>
-<p class="tag">Puzzle</p>
-<a class="btn" href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
+<h3>Buzzle Masters</h3>
+<a class="btn" href="https://replit.com/@aadarantala/Buzzle-Masters">Play</a>
 </div>
 
 </div>
 </div>
 
-<div class="section">
-<h2>🎮 Other Games</h2>
+<!-- OTHER -->
+<div id="other" class="section">
+<h2 style="text-align:center;">🎮 Other Games</h2>
 
 <div class="grid">
 
-<div class="card"><button class="like" onclick="like('geo1')">
-❤️ <span id="geo1">0</span>
-</button>
+<div class="card">
 <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=800">
 <h3>Ping Pong Duel</h3>
-<p class="tag">Arcade</p>
-<a class="btn" href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
+<a class="btn" href="https://replit.com/@Rantala12/Ping-Pong-Duel">Play</a>
 </div>
 
 </div>
 </div>
 
 <script>
-function login(){
-let name=document.getElementById("username").value;
-localStorage.setItem("user",name);
-document.getElementById("userText").innerText="Logged in as: "+name;
-}
 
-function searchGames(){
-let input=document.getElementById("search").value.toLowerCase();
-let cards=document.getElementsByClassName("card");
-
-for(let card of cards){
-card.style.display=
-card.innerText.toLowerCase().includes(input)
-? "block"
-: "none";
-}
-}
-</script>
-
-</body>
-</html>
 function login(){
   let name = document.getElementById("username").value;
   localStorage.setItem("user", name);
@@ -225,5 +236,33 @@ window.onload = function(){
   if(user){
     document.getElementById("userText").innerText = "Logged in as: " + user;
   }
+
+  ["geo1","geo2","geo3","geo4"].forEach(id=>{
+    let likes = localStorage.getItem(id) || 0;
+    let el = document.getElementById(id);
+    if(el) el.innerText = likes;
+  });
 }
 
+function like(id){
+  let likes = localStorage.getItem(id) || 0;
+  likes++;
+  localStorage.setItem(id, likes);
+  document.getElementById(id).innerText = likes;
+}
+
+function searchGames(){
+  let input = document.getElementById("search").value.toLowerCase();
+  let cards = document.getElementsByClassName("card");
+
+  for(let c of cards){
+    c.style.display = c.innerText.toLowerCase().includes(input)
+    ? "block"
+    : "none";
+  }
+}
+
+</script>
+
+</body>
+</html>
