@@ -15,14 +15,31 @@ body {
     color: white;
 }
 
-/* TOP BAR */
-header {
-    background: linear-gradient(90deg, #00ffcc, #0066ff);
-    padding: 25px;
-    text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: 2px;
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #0b1224;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar h1 {
+    font-size: 22px;
+    color: #00ffcc;
+}
+
+.nav-buttons button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    background: #00ffcc;
 }
 
 /* SEARCH */
@@ -38,7 +55,6 @@ header {
     border-radius: 10px;
     border: none;
     outline: none;
-    font-size: 16px;
 }
 
 /* CATEGORY */
@@ -59,21 +75,19 @@ header {
 
 /* CARD */
 .card {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255,255,255,0.06);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 15px;
     transition: 0.3s;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
     border: 1px solid rgba(255,255,255,0.1);
 }
 
 .card:hover {
-    transform: translateY(-8px) scale(1.03);
+    transform: translateY(-8px);
     box-shadow: 0 0 25px #00ffcc;
 }
 
-/* ICON */
 .thumb {
     height: 120px;
     border-radius: 12px;
@@ -82,17 +96,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 34px;
+    font-size: 30px;
 }
 
-/* TITLE */
 .title {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-/* BUTTON */
 .btn {
     display: inline-block;
     padding: 10px 14px;
@@ -101,101 +113,167 @@ header {
     text-decoration: none;
     border-radius: 10px;
     font-weight: 700;
-    transition: 0.2s;
 }
 
-.btn:hover {
-    background: #00c2a8;
+.like {
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* PROFILE */
+.profile {
+    display: none;
+    padding: 30px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #00ffcc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>🎮 GAME HUB</header>
+<div class="navbar">
+    <h1>🎮 Game Hub</h1>
+    <div class="nav-buttons">
+        <button onclick="showHome()">Home</button>
+        <button onclick="showProfile()">Profile</button>
+    </div>
+</div>
 
+<!-- SEARCH -->
 <div class="search">
     <input type="text" id="search" placeholder="Search games...">
 </div>
 
-<!-- ARCADE -->
+<!-- HOME -->
+<div id="home">
+
 <div class="category">🔥 Arcade Games</div>
 <div class="grid">
 
     <div class="card">
         <div class="thumb">🏓</div>
-        <div class="title">Ping Pong Duel</div>
+        <div class="title">Ping Pong Duel <span class="like" onclick="like(this)">♡</span></div>
         <a class="btn" href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
     </div>
 
     <div class="card">
         <div class="thumb">🚗</div>
-        <div class="title">Auto Arena</div>
+        <div class="title">Auto Arena <span class="like" onclick="like(this)">♡</span></div>
         <a class="btn" href="https://replit.com/@Rantala12/Auto-Arena" target="_blank">Play</a>
     </div>
 
 </div>
 
-<!-- GEOMETRY -->
 <div class="category">🟢 Geometry Games</div>
 <div class="grid">
 
     <div class="card">
-        <div class="thumb">🟩</div>
-        <div class="title">Geometry Challenge</div>
-        <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">Play</a>
-    </div>
-
-    <div class="card">
         <div class="thumb">⬛</div>
-        <div class="title">Geometry Dash</div>
+        <div class="title">Geometry Dash <span class="like" onclick="like(this)">♡</span></div>
         <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Dash" target="_blank">Play</a>
     </div>
 
     <div class="card">
         <div class="thumb">🟦</div>
-        <div class="title">Geometry Leveler</div>
+        <div class="title">Geometry Leveler <span class="like" onclick="like(this)">♡</span></div>
         <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Leveler" target="_blank">Play</a>
-    </div>
-
-    <div class="card">
-        <div class="thumb">📏</div>
-        <div class="title">Geometry Dash Levels</div>
-        <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Dash-Levels" target="_blank">Play</a>
     </div>
 
 </div>
 
-<!-- PUZZLE -->
 <div class="category">🧠 Puzzle Games</div>
 <div class="grid">
 
     <div class="card">
-        <div class="thumb">🔴🟡</div>
-        <div class="title">Connect Four</div>
+        <div class="thumb">🔴</div>
+        <div class="title">Connect Four <span class="like" onclick="like(this)">♡</span></div>
         <a class="btn" href="https://replit.com/@aadarantala/Connect-Four" target="_blank">Play</a>
     </div>
 
     <div class="card">
         <div class="thumb">🧩</div>
-        <div class="title">Buzzle Masters</div>
+        <div class="title">Buzzle Masters <span class="like" onclick="like(this)">♡</span></div>
         <a class="btn" href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
     </div>
 
 </div>
 
-<script>
-// SEARCH FILTER
-const search = document.getElementById("search");
-search.addEventListener("input", function() {
-    const value = this.value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
+</div>
 
-    cards.forEach(card => {
-        const title = card.querySelector(".title").innerText.toLowerCase();
+<!-- PROFILE -->
+<div id="profile" class="profile">
+
+    <div class="profile-box">
+        <div class="avatar" id="avatar">U</div>
+        <div>
+            <h2 id="username">Player</h2>
+            <p>🎮 Games liked: <span id="likes">0</span></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+// SEARCH
+document.getElementById("search").addEventListener("input", function() {
+    let value = this.value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card => {
+        let title = card.innerText.toLowerCase();
         card.style.display = title.includes(value) ? "block" : "none";
     });
 });
+
+// LIKE SYSTEM
+function like(el) {
+    el.innerText = el.innerText === "♡" ? "❤️" : "♡";
+    updateLikes();
+}
+
+function updateLikes() {
+    let count = document.querySelectorAll(".like").length;
+    let liked = document.querySelectorAll(".like").length;
+    document.getElementById("likes").innerText = liked;
+}
+
+// PROFILE NAV
+function showProfile() {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("profile").style.display = "block";
+
+    let name = localStorage.getItem("username");
+    if (!name) {
+        name = prompt("Enter your name:");
+        localStorage.setItem("username", name);
+    }
+
+    document.getElementById("username").innerText = name;
+    document.getElementById("avatar").innerText = name.charAt(0).toUpperCase();
+}
+
+function showHome() {
+    document.getElementById("home").style.display = "block";
+    document.getElementById("profile").style.display = "none";
+}
+
 </script>
 
 </body>
