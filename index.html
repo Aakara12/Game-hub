@@ -3,137 +3,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<h1>🎮 Game Hub</h1>
-<p>Play awesome games made by AaKaRa</p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Hub</title>
+
 <style>
 body{
-  <nav class="navbar">
-  <div class="logo">🎮 GAME HUB</div>
-
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#geometry">Geometry Games</a>
-    <a href="#brain">Brain Games</a>
-    <a href="#other">Other Games</a>
-  </div>
-</nav>
-
-<section id="home" class="hero">
-
-  <h1>🎮 GAME HUB</h1>
-
-  <p>
-    Play Geometry Games, Brain Games and more!
-  </p>
-
-  <div class="featured">
-
-```
-<h2>⭐ Featured Game</h2>
-
-<h3>Geometry Challenge</h3>
-
-<p>Our most popular game right now.</p>
-
-<a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">
-  Play Now
-</a>
-```
-
-  </div>
-
-</section>
-
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(180deg,#2563eb,#0b1220);
-  color:white;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(180deg,#2563eb,#0b1220);
+color:white;
 }
 
 .hero{
-  text-align:center;
-  padding:60px 20px;
-}
-
-.hero h1{
-  font-size:60px;
-  margin:0;
-}
-
-.hero p{
-  color:#cbd5e1;
+text-align:center;
+padding:60px 20px;
 }
 
 .search{
-  width:60%;
-  max-width:500px;
-  padding:12px;
-  border:none;
-  border-radius:12px;
+width:60%;
+max-width:500px;
+padding:12px;
+border:none;
+border-radius:12px;
 }
 
 .section{
-  padding:20px;
-}
-
-.section h2{
-  text-align:center;
+padding:20px;
 }
 
 .grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
 }
 
 .card{
-  width:250px;
-  background:#1e293b;
-  border-radius:15px;
-  overflow:hidden;
-  transition:.2s;
+width:250px;
+background:#1e293b;
+border-radius:15px;
+overflow:hidden;
+transition:0.2s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+transform:translateY(-5px);
 }
 
 .card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
+width:100%;
+height:140px;
+object-fit:cover;
 }
 
 .card h3{
-  margin:10px;
+margin:10px;
 }
 
 .tag{
-  margin:10px;
-  color:#93c5fd;
-  font-size:12px;
+margin:10px;
+color:#93c5fd;
+font-size:12px;
 }
 
 .btn{
-  display:inline-block;
-  margin:10px;
-  padding:8px 12px;
-  background:#38bdf8;
-  color:black;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:bold;
+display:inline-block;
+margin:10px;
+padding:8px 12px;
+background:#38bdf8;
+color:black;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
 }
 
 .like{
-  margin:10px;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  background:#ef4444;
-  color:white;
-  cursor:pointer;
+margin:10px;
+padding:8px;
+border:none;
+border-radius:8px;
+background:#ef4444;
+color:white;
+cursor:pointer;
 }
 </style>
 
@@ -142,14 +93,10 @@ body{
 <body>
 
 <div class="hero">
-<h1>🎮 Game Hub</h1>
-<p>Play awesome games made by AaKaRa</p>
+<h1>🎮 GAME HUB</h1>
+<p>Discover, Play and Rate Amazing Games</p>
 
-<input
-class="search"
-id="search"
-placeholder="Search games..."
-onkeyup="searchGames()">
+<input class="search" id="search" placeholder="Search games..." onkeyup="searchGames()">
 
 <br><br>
 
@@ -160,40 +107,45 @@ onkeyup="searchGames()">
 </div>
 
 <div class="section">
+<button class="like" onclick="like('geo1')">
 <h2>📐 Geometry Games</h2>
 
 <div class="grid">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800">
-<h3>Geometry Challenge</h3>
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800">
+<button class="like" onclick="like('geo1')">
+❤️ <span id="geo1">0</span>
+</button><h3>Geometry Challenge</h3>
 <p class="tag">Multiplayer</p>
 <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Challenge" target="_blank">Play</a>
-<button class="like" onclick="like('geo1')">❤️ <span id="geo1">0</span></button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1508780709619-79562169bc64?w=800">
-<h3>Geometry Leveler</h3>
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800">
+<button class="like" onclick="like('geo1')">
+❤️ <span id="geo1">0</span>
+</button><h3>Geometry Leveler</h3>
 <p class="tag">Puzzle</p>
 <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Leveler" target="_blank">Play</a>
-<button class="like" onclick="like('geo2')">❤️ <span id="geo2">0</span></button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800">
-<h3>Geometry Dash Levels</h3>
+<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800">
+<button class="like" onclick="like('geo1')">
+❤️ <span id="geo1">0</span>
+</button><h3>Geometry Dash Levels</h3>
 <p class="tag">Platform</p>
 <a class="btn" href="https://replit.com/@AaKaRa/Geometry-Dash-Levels" target="_blank">Play</a>
-<button class="like" onclick="like('geo3')">❤️ <span id="geo3">0</span></button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800">
-<h3>Geometry Challenge Rhythm</h3>
+<img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800">
+<button class="like" onclick="like('geo1')">
+❤️ <span id="geo1">0</span>
+</button><h3>Rhythm Runner</h3>
 <p class="tag">Music</p>
 <a class="btn" href="https://rhythm-runner--AaKaRa.replit.app" target="_blank">Play</a>
-<button class="like" onclick="like('geo4')">❤️ <span id="geo4">0</span></button>
 </div>
 
 </div>
@@ -205,13 +157,17 @@ onkeyup="searchGames()">
 <div class="grid">
 
 <div class="card">
+<img src="https://images.unsplash.com/photo-1606503153255-59d8b8b7d4b0?w=800">
 <h3>Connect Four</h3>
 <p class="tag">Strategy</p>
 <a class="btn" href="https://replit.com/@aadarantala/Connect-Four" target="_blank">Play</a>
 </div>
 
 <div class="card">
-<h3>Buzzle Masters</h3>
+<img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800">
+<button class="like" onclick="like('geo1')">
+❤️ <span id="geo1">0</span>
+</button><h3>Buzzle Masters</h3>
 <p class="tag">Puzzle</p>
 <a class="btn" href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
 </div>
@@ -224,7 +180,10 @@ onkeyup="searchGames()">
 
 <div class="grid">
 
-<div class="card">
+<div class="card"><button class="like" onclick="like('geo1')">
+❤️ <span id="geo1">0</span>
+</button>
+<img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=800">
 <h3>Ping Pong Duel</h3>
 <p class="tag">Arcade</p>
 <a class="btn" href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
@@ -234,44 +193,36 @@ onkeyup="searchGames()">
 </div>
 
 <script>
-
 function login(){
- let name=document.getElementById("username").value;
- localStorage.setItem("user",name);
- document.getElementById("userText").innerText="Logged in as: "+name;
-}
-
-function like(game){
- let likes=localStorage.getItem(game)||0;
- likes++;
- localStorage.setItem(game,likes);
- document.getElementById(game).innerText=likes;
+let name=document.getElementById("username").value;
+localStorage.setItem("user",name);
+document.getElementById("userText").innerText="Logged in as: "+name;
 }
 
 function searchGames(){
- let input=document.getElementById("search").value.toLowerCase();
- let cards=document.getElementsByClassName("card");
+let input=document.getElementById("search").value.toLowerCase();
+let cards=document.getElementsByClassName("card");
 
- for(let card of cards){
-   card.style.display=
-   card.innerText.toLowerCase().includes(input)
-   ? "block"
-   : "none";
- }
+for(let card of cards){
+card.style.display=
+card.innerText.toLowerCase().includes(input)
+? "block"
+: "none";
 }
-
-window.onload=function(){
- let user=localStorage.getItem("user");
- if(user){
-  document.getElementById("userText").innerText="Logged in as: "+user;
- }
-
- ["geo1","geo2","geo3","geo4"].forEach(id=>{
-   let likes=localStorage.getItem(id)||0;
-   document.getElementById(id).innerText=likes;
- });
 }
 </script>
 
 </body>
 </html>
+function login(){
+  let name = document.getElementById("username").value;
+  localStorage.setItem("user", name);
+  document.getElementById("userText").innerText = "Logged in as: " + name;
+}
+
+window.onload = function(){
+  let user = localStorage.getItem("user");
+  if(user){
+    document.getElementById("userText").innerText = "Logged in as: " + user;
+  }
+}
