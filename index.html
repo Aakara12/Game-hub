@@ -1,655 +1,540 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Hub Final</title>
+const games = [
+  {
+    id: "geometry-dash",
+    title: "Geometry Dash",
+    category: "Arcade",
+    featured: true,
+    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
+    description: "Jump, dodge and survive challenging levels.",
+    xp: 50,
+    url: "https://replit.com/@AaKaRa/Geometry-Dash"
+  },
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #0b0f1a;
-    color: white;
-    display: flex;
+  {
+    id: "geometry-challenge",
+    title: "Geometry Challenge",
+    category: "Arcade",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
+    description: "A challenging geometry adventure.",
+    xp: 40,
+    url: "https://replit.com/@AaKaRa/Geometry-Challenge"
+  },
+
+  {
+    id: "geometry-leveler",
+    title: "Geometry Leveler",
+    category: "Arcade",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800",
+    description: "Level up through geometry obstacles.",
+    xp: 45,
+    url: "https://replit.com/@AaKaRa/Geometry-Leveler"
+  },
+
+  {
+    id: "geometry-dash-levels",
+    title: "Geometry Dash Levels",
+    category: "Arcade",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
+    description: "Extra levels for Geometry Dash fans.",
+    xp: 45,
+    url: "https://replit.com/@AaKaRa/Geometry-Dash-Levels"
+  },
+
+  {
+    id: "ping-pong-duel",
+    title: "Ping Pong Duel",
+    category: "Sports",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800",
+    description: "Fast-paced table tennis action.",
+    xp: 35,
+    url: "https://replit.com/@Rantala12/Ping-Pong-Duel"
+  },
+
+  {
+    id: "auto-arena",
+    title: "Auto Arena",
+    category: "Racing",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800",
+    description: "Race and dominate the arena.",
+    xp: 40,
+    url: "https://replit.com/@Rantala12/Auto-Arena"
+  },
+
+  {
+    id: "connect-four",
+    title: "Connect Four",
+    category: "Puzzle",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1606503153255-59d8b8b2f7f5?w=800",
+    description: "Classic strategy game.",
+    xp: 25,
+    url: "https://replit.com/@aadarantala/Connect-Four"
+  },
+
+  {
+    id: "buzzle-masters",
+    title: "Buzzle Masters",
+    category: "Puzzle",
+    featured: false,
+    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
+    description: "Solve puzzles and become a master.",
+    xp: 30,
+    url: "https://replit.com/@aadarantala/Buzzle-Masters"
+  }
+];
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#0f172a;
+    color:white;
 }
 
 /* SIDEBAR */
-.sidebar {
-    width: 230px;
-    height: 100vh;
-    background: #0f172a;
-    position: fixed;
-    padding: 15px;
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:#111827;
+    padding:20px;
+    overflow-y:auto;
+    border-right:1px solid #1f2937;
 }
 
-.sidebar h2 {
-    color: #00ffcc;
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#00e5ff;
+    margin-bottom:25px;
 }
 
-.sidebar button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: #1f2937;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
+.menu-btn{
+    width:100%;
+    background:#1f2937;
+    color:white;
+    border:none;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.2s;
 }
 
-.sidebar button:hover {
-    background: #00ffcc;
-    color: black;
+.menu-btn:hover{
+    background:#00e5ff;
+    color:black;
 }
 
 /* MAIN */
-.main {
-    margin-left: 250px;
-    width: 100%;
+.main{
+    margin-left:240px;
+    min-height:100vh;
 }
 
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: #111827;
-    position: sticky;
-    top: 0;
+/* TOPBAR */
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#111827;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #1f2937;
 }
 
-.topbar h1 {
-    color: #00ffcc;
+.search{
+    width:350px;
+    max-width:60vw;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    outline:none;
 }
 
-/* SEARCH */
-.search {
-    padding: 10px 15px;
+/* HERO */
+.hero{
+    margin:20px;
+    border-radius:20px;
+    overflow:hidden;
+    height:300px;
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    padding:25px;
+    background:linear-gradient(
+        135deg,
+        #00e5ff,
+        #3b82f6,
+        #7c3aed
+    );
 }
 
-.search input {
-    width: 60%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
+.hero-content{
+    max-width:500px;
 }
 
-/* SECTIONS */
-.section {
-    padding: 10px 15px;
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-.section h3 {
-    color: #00ffcc;
+.hero p{
+    opacity:0.9;
+}
+
+/* XP BAR */
+.xp-box{
+    margin-top:15px;
+}
+
+.xp-bar{
+    width:100%;
+    height:12px;
+    background:#1f2937;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.xp-fill{
+    height:100%;
+    width:0%;
+    background:#00e5ff;
+    transition:0.5s;
+}
+
+/* SECTION */
+.section{
+    padding:20px;
+}
+
+.section h2{
+    margin-bottom:15px;
 }
 
 /* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 15px;
+.games-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fill,minmax(240px,1fr));
+    gap:20px;
 }
 
 /* CARD */
-.card {
-    background: #1f2937;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.25s;
+.game-card{
+    background:#111827;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.25s;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #00ffcc;
+.game-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 20px rgba(0,229,255,.4);
 }
 
-.card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
+.game-card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
 }
 
-.card-content {
-    padding: 10px;
+.game-info{
+    padding:15px;
 }
 
-.play {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px;
-    background: #00ffcc;
-    color: black;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
+.game-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:5px;
 }
 
-.like {
-    float: right;
-    cursor: pointer;
+.game-category{
+    color:#9ca3af;
+    font-size:14px;
+    margin-bottom:10px;
 }
 
-/* PLAYER */
-#player {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 999;
+.play-btn{
+    display:inline-block;
+    padding:8px 12px;
+    background:#00e5ff;
+    color:black;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-#player iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+.favorite-btn{
+    float:right;
+    cursor:pointer;
+    font-size:20px;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    border: none;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-}
-</style>
-</head>
-
-<body>
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h2>🎮 Game Hub</h2>
-    <button onclick="filter('all')">All Games</button>
-    <button onclick="filter('trending')">🔥 Trending</button>
-    <button onclick="filter('new')">🆕 New</button>
-    <button onclick="filter('fav')">❤️ Favorites</button>
-    <button onclick="filter('recent')">⏱ Recently Played</button>
-    <button onclick="renderRecommended()">✨ Recommended</button>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-<div class="topbar">
-    <h1>Game Hub Final</h1>
-    <div id="stats">Loading...</div>
-</div>
-
-<div class="search">
-    <input onkeyup="searchGames(this.value)" placeholder="Search games...">
-</div>
-
-<!-- GAMES -->
-<div class="grid">
-
-<!-- PELIT -->
-
-<div class="card" data-type="trending" data-name="Ping Pong Duel" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Table_tennis_table.jpg">
-<div class="card-content">
-Ping Pong Duel <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@Rantala12/Ping-Pong-Duel">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="trending" data-name="Auto Arena" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Car_race.jpg">
-<div class="card-content">
-Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@Rantala12/Auto-Arena">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="trending" data-name="Geometry Challenge" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
-<div class="card-content">
-Geometry Challenge <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Challenge">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="trending" data-name="Geometry Dash" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
-<div class="card-content">
-Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="new" data-name="Geometry Leveler" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
-<div class="card-content">
-Geometry Leveler <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Leveler">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="new" data-name="Geometry Dash Levels" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
-<div class="card-content">
-Geometry Dash Levels <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash-Levels">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="new" data-name="Connect Four" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Connect_Four.jpg">
-<div class="card-content">
-Connect Four <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@aadarantala/Connect-Four">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="new" data-name="Buzzle Masters" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
-<div class="card-content">
-Buzzle Masters <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@aadarantala/Buzzle-Masters">Play</a>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- PLAYER -->
-<div id="player">
-<button class="close" onclick="closeGame()">X</button>
-<iframe id="frame"></iframe>
-</div>
-
-<script>
-
-let favs = JSON.parse(localStorage.getItem("favs") || "[]");
-let recent = JSON.parse(localStorage.getItem("recent") || "[]");
-
-function like(e, el){
-    e.stopPropagation();
-    let name = el.closest(".card").dataset.name;
-
-    if(favs.includes(name)){
-        favs = favs.filter(f => f !== name);
-        el.innerText = "♡";
-    } else {
-        favs.push(name);
-        el.innerText = "❤️";
-    }
-
-    localStorage.setItem("favs", JSON.stringify(favs));
-    updateStats();
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    padding:20px;
 }
 
-function openGame(card){
-    let link = card.querySelector(".play").dataset.link;
-
-    document.getElementById("frame").src = link;
-    document.getElementById("player").style.display = "block";
-
-    let name = card.dataset.name;
-    recent.unshift(name);
-    recent = [...new Set(recent)].slice(0,5);
-    localStorage.setItem("recent", JSON.stringify(recent));
-
-    updateStats();
+.stat-card{
+    background:#111827;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
 }
 
-function closeGame(){
-    document.getElementById("player").style.display = "none";
-    document.getElementById("frame").src = "";
+.stat-number{
+    font-size:30px;
+    color:#00e5ff;
+    margin-top:10px;
 }
 
-function searchGames(v){
-    document.querySelectorAll(".card").forEach(c=>{
-        c.style.display = c.innerText.toLowerCase().includes(v.toLowerCase()) ? "block":"none";
-    });
+/* ACHIEVEMENTS */
+.achievement-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;
 }
 
-function filter(type){
-    document.querySelectorAll(".card").forEach(c=>{
-        if(type === "all") c.style.display = "block";
-        else if(type === "fav") c.style.display = favs.includes(c.dataset.name) ? "block":"none";
-        else if(type === "recent") c.style.display = recent.includes(c.dataset.name) ? "block":"none";
-        else c.style.display = c.dataset.type === type ? "block":"none";
-    });
+.achievement{
+    background:#111827;
+    padding:15px;
+    border-radius:15px;
 }
 
-function renderRecommended(){
-    document.querySelectorAll(".card").forEach(c=>{
-        c.style.display = (Math.random() > 0.4) ? "block":"none";
-    });
+.achievement.unlocked{
+    border:2px solid gold;
 }
 
-function updateStats(){
-    document.getElementById("stats").innerText =
-    "❤️ " + favs.length + " | ⏱ " + recent.length + " recent";
+/* PLAYER MODAL */
+.player-modal{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:none;
+    z-index:9999;
 }
 
-updateStats();
+.player-modal iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
 
-</script>
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    z-index:10000;
+    border:none;
+    padding:10px 15px;
+    background:red;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
 
-</body>
-</html>
+/* GAME PAGE */
+.game-page{
+    padding:20px;
+}
+
+.game-header{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.game-header img{
+    width:400px;
+    max-width:100%;
+    border-radius:15px;
+}
+
+.game-details{
+    flex:1;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+.sidebar{
+    width:80px;
+}
+
+.logo{
+    font-size:18px;
+}
+
+.menu-btn{
+    font-size:12px;
+    padding:8px;
+}
+
+.main{
+    margin-left:80px;
+}
+
+.hero h1{
+    font-size:28px;
+}
+
+.search{
+    width:180px;
+}
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Hub Steam</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Hub</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #0e141b;
-    color: white;
-    display: flex;
-}
+  <link rel="stylesheet" href="style.css">
 
-/* SIDEBAR (Steam style) */
-.sidebar {
-    width: 230px;
-    height: 100vh;
-    background: #171a21;
-    position: fixed;
-    padding: 15px;
-}
-
-.sidebar h2 {
-    color: #66c0f4;
-}
-
-.sidebar button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: #2a475e;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.sidebar button:hover {
-    background: #66c0f4;
-    color: black;
-}
-
-/* MAIN */
-.main {
-    margin-left: 240px;
-    width: 100%;
-}
-
-/* TOP BAR */
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: #171a21;
-    position: sticky;
-    top: 0;
-}
-
-.topbar h1 {
-    color: #66c0f4;
-}
-
-/* HERO (FEATURED GAME) */
-.hero {
-    margin: 15px;
-    height: 220px;
-    background: linear-gradient(135deg, #66c0f4, #1b2838);
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.hero h2 {
-    margin: 0;
-}
-
-/* SECTIONS */
-.section {
-    padding: 10px 15px;
-}
-
-.section h3 {
-    color: #66c0f4;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-}
-
-/* CARD (Steam capsule style) */
-.card {
-    background: #1b2838;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #66c0f4;
-}
-
-.card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-}
-
-.card-content {
-    padding: 10px;
-}
-
-.play {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px;
-    background: #66c0f4;
-    color: black;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.like {
-    float: right;
-    cursor: pointer;
-}
-
-/* PLAYER */
-#player {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 999;
-}
-
-#player iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: red;
-    border: none;
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-}
-</style>
+  <script src="games.js"></script>
+  <script defer src="app.js"></script>
 </head>
-
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h2>🎮 Game Hub</h2>
-    <button onclick="filter('all')">Store</button>
-    <button onclick="filter('trending')">🔥 Trending</button>
-    <button onclick="filter('new')">🆕 New Releases</button>
-    <button onclick="filter('fav')">❤️ Favorites</button>
-    <button onclick="filter('recent')">⏱ Recently Played</button>
-</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-<!-- MAIN -->
-<div class="main">
+    <div class="logo">🎮 Game Hub</div>
 
-<div class="topbar">
-    <h1>Game Hub Steam Edition</h1>
-    <div id="stats"></div>
-</div>
+    <button class="menu-btn" onclick="showAllGames()">
+      🏠 Home
+    </button>
 
-<!-- HERO -->
-<div class="hero">
-    <div>
-        <h2>🔥 Featured Game</h2>
-        <p>Geometry Dash - Jump into the action</p>
-        <button class="play" onclick="openLink('https://replit.com/@AaKaRa/Geometry-Dash')">Play Now</button>
+    <button class="menu-btn" onclick="showFavorites()">
+      ❤️ Favorites
+    </button>
+
+    <button class="menu-btn" onclick="showRecent()">
+      ⏱ Recent
+    </button>
+
+    <button class="menu-btn" onclick="showRecommended()">
+      ✨ Recommended
+    </button>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+
+      <input
+        type="text"
+        id="search"
+        class="search"
+        placeholder="Search games..."
+      >
+
+      <div id="levelDisplay">
+        Level 1
+      </div>
+
     </div>
-</div>
 
-<!-- TRENDING -->
-<div class="section">
-<h3>🔥 Trending</h3>
-<div class="grid">
+    <!-- FEATURED -->
+    <section id="hero" class="hero">
 
-<div class="card" data-type="trending" data-name="Geometry Dash" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
-<div class="card-content">
-Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash">Play</a>
-</div>
-</div>
+      <div class="hero-content">
 
-<div class="card" data-type="trending" data-name="Ping Pong Duel" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Table_tennis_table.jpg">
-<div class="card-content">
-Ping Pong Duel <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@Rantala12/Ping-Pong-Duel">Play</a>
-</div>
-</div>
+        <h1 id="featuredTitle">
+          Featured Game
+        </h1>
 
-</div>
-</div>
+        <p id="featuredDescription">
+          Loading...
+        </p>
 
-<!-- NEW -->
-<div class="section">
-<h3>🆕 New Releases</h3>
-<div class="grid">
+        <div class="xp-box">
 
-<div class="card" data-type="new" data-name="Auto Arena" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Car_race.jpg">
-<div class="card-content">
-Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@Rantala12/Auto-Arena">Play</a>
-</div>
-</div>
+          <div class="xp-bar">
+            <div class="xp-fill" id="xpFill"></div>
+          </div>
 
-<div class="card" data-type="new" data-name="Connect Four" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Connect_Four.jpg">
-<div class="card-content">
-Connect Four <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@aadarantala/Connect-Four">Play</a>
-</div>
-</div>
+        </div>
 
-</div>
-</div>
+      </div>
 
-</div>
+    </section>
 
-<!-- PLAYER -->
-<div id="player">
-<button class="close" onclick="closeGame()">X</button>
-<iframe id="frame"></iframe>
-</div>
+    <!-- STATS -->
+    <section class="stats">
 
-<script>
+      <div class="stat-card">
+        Games Played
+        <div class="stat-number" id="gamesPlayed">
+          0
+        </div>
+      </div>
 
-let favs = JSON.parse(localStorage.getItem("favs") || "[]");
-let recent = JSON.parse(localStorage.getItem("recent") || "[]");
+      <div class="stat-card">
+        Favorites
+        <div class="stat-number" id="favoritesCount">
+          0
+        </div>
+      </div>
 
-function like(e, el){
-    e.stopPropagation();
-    let name = el.closest(".card").dataset.name;
+      <div class="stat-card">
+        XP
+        <div class="stat-number" id="xpCount">
+          0
+        </div>
+      </div>
 
-    if(favs.includes(name)){
-        favs = favs.filter(f => f !== name);
-        el.innerText = "♡";
-    } else {
-        favs.push(name);
-        el.innerText = "❤️";
-    }
+    </section>
 
-    localStorage.setItem("favs", JSON.stringify(favs));
-    updateStats();
-}
+    <!-- GAMES -->
+    <section class="section">
 
-function openGame(card){
-    let link = card.querySelector(".play").dataset.link;
-    document.getElementById("frame").src = link;
-    document.getElementById("player").style.display = "block";
+      <h2>Store</h2>
 
-    let name = card.dataset.name;
-    recent.unshift(name);
-    recent = [...new Set(recent)].slice(0,5);
-    localStorage.setItem("recent", JSON.stringify(recent));
+      <div
+        id="gamesContainer"
+        class="games-grid">
+      </div>
 
-    updateStats();
-}
+    </section>
 
-function openLink(link){
-    document.getElementById("frame").src = link;
-    document.getElementById("player").style.display = "block";
-}
+    <!-- ACHIEVEMENTS -->
+    <section class="section">
 
-function closeGame(){
-    document.getElementById("player").style.display = "none";
-    document.getElementById("frame").src = "";
-}
+      <h2>Achievements</h2>
 
-function filter(type){
-    document.querySelectorAll(".card").forEach(c=>{
-        if(type === "all") c.style.display = "block";
-        else if(type === "fav") c.style.display = favs.includes(c.dataset.name) ? "block":"none";
-        else if(type === "recent") c.style.display = recent.includes(c.dataset.name) ? "block":"none";
-        else c.style.display = c.dataset.type === type ? "block":"none";
-    });
-}
+      <div
+        id="achievementContainer"
+        class="achievement-grid">
+      </div>
 
-function updateStats(){
-    document.getElementById("stats").innerText =
-    "❤️ " + favs.length + " | ⏱ " + recent.length;
-}
+    </section>
 
-updateStats();
-
-</script>
+  </main>
 
 </body>
 </html>
