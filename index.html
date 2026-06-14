@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Hub Pro Max</title>
+<title>Game Hub Final</title>
 
 <style>
 body {
@@ -16,237 +16,7 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-    width: 220px;
-    background: #0f172a;
-    height: 100vh;
-    padding: 15px;
-    position: fixed;
-}
-
-.sidebar h2 {
-    color: #00ffcc;
-}
-
-.sidebar button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: #1f2937;
-    color: white;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.sidebar button:hover {
-    background: #00ffcc;
-    color: black;
-}
-
-/* MAIN */
-.main {
-    margin-left: 240px;
-    width: 100%;
-}
-
-/* TOP BAR */
-.topbar {
-    padding: 15px;
-    background: #111827;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.topbar h1 {
-    color: #00ffcc;
-}
-
-/* SECTIONS */
-.section {
-    padding: 20px;
-}
-
-.section h3 {
-    color: #00ffcc;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-/* CARD */
-.card {
-    background: #1f2937;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.2s;
-    cursor: pointer;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-}
-
-.card-content {
-    padding: 10px;
-}
-
-.play {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px;
-    background: #00ffcc;
-    color: black;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-}
-
-.like {
-    float: right;
-    cursor: pointer;
-}
-</style>
-</head>
-
-<body>
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h2>🎮 Game Hub</h2>
-    <button onclick="filter('all')">All Games</button>
-    <button onclick="filter('trending')">🔥 Trending</button>
-    <button onclick="filter('new')">🆕 New</button>
-    <button onclick="filter('fav')">❤️ Favorites</button>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-<div class="topbar">
-    <h1>Game Hub Pro Max</h1>
-    <div id="user">Guest</div>
-</div>
-
-<!-- TRENDING -->
-<div class="section" data-type="trending">
-<h3>🔥 Trending</h3>
-
-<div class="grid">
-
-<div class="card" data-type="trending" data-name="Geometry Dash">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
-<div class="card-content">
-Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" href="https://replit.com/@AaKaRa/Geometry-Dash" target="_blank">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="trending" data-name="Ping Pong Duel">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Table_tennis_table.jpg">
-<div class="card-content">
-Ping Pong Duel <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- NEW -->
-<div class="section" data-type="new">
-<h3>🆕 New Games</h3>
-
-<div class="grid">
-
-<div class="card" data-type="new" data-name="Auto Arena">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Car_race.jpg">
-<div class="card-content">
-Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" href="https://replit.com/@Rantala12/Auto-Arena" target="_blank">Play</a>
-</div>
-</div>
-
-<div class="card" data-type="new" data-name="Buzzle Masters">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
-<div class="card-content">
-Buzzle Masters <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-let favs = JSON.parse(localStorage.getItem("favs") || "[]");
-
-function like(e, el){
-    e.stopPropagation();
-    let name = el.closest(".card").dataset.name;
-
-    if(favs.includes(name)){
-        favs = favs.filter(f => f !== name);
-        el.innerText = "♡";
-    } else {
-        favs.push(name);
-        el.innerText = "❤️";
-    }
-
-    localStorage.setItem("favs", JSON.stringify(favs));
-}
-
-function filter(type){
-    document.querySelectorAll(".card").forEach(card=>{
-        if(type === "all") card.style.display = "block";
-        else if(type === "fav"){
-            let name = card.dataset.name;
-            card.style.display = favs.includes(name) ? "block" : "none";
-        } else {
-            card.style.display = card.dataset.type === type ? "block" : "none";
-        }
-    });
-}
-
-document.getElementById("user").innerText =
-localStorage.getItem("user") || "Guest";
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Hub Ultimate</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #0b0f1a;
-    color: white;
-    display: flex;
-}
-
-/* SIDEBAR */
-.sidebar {
-    width: 220px;
+    width: 230px;
     height: 100vh;
     background: #0f172a;
     position: fixed;
@@ -275,11 +45,10 @@ body {
 
 /* MAIN */
 .main {
-    margin-left: 240px;
+    margin-left: 250px;
     width: 100%;
 }
 
-/* TOPBAR */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -305,12 +74,20 @@ body {
     border: none;
 }
 
+/* SECTIONS */
+.section {
+    padding: 10px 15px;
+}
+
+.section h3 {
+    color: #00ffcc;
+}
+
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 15px;
-    padding: 15px;
 }
 
 /* CARD */
@@ -319,11 +96,12 @@ body {
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
 .card:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 15px #00ffcc;
 }
 
 .card img {
@@ -352,7 +130,7 @@ body {
     cursor: pointer;
 }
 
-/* GAME PLAYER */
+/* PLAYER */
 #player {
     display: none;
     position: fixed;
@@ -369,6 +147,17 @@ body {
     height: 100%;
     border: none;
 }
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
 </style>
 </head>
 
@@ -376,20 +165,21 @@ body {
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-    <h2>🎮 Hub</h2>
-    <button onclick="filter('all')">All</button>
+    <h2>🎮 Game Hub</h2>
+    <button onclick="filter('all')">All Games</button>
     <button onclick="filter('trending')">🔥 Trending</button>
     <button onclick="filter('new')">🆕 New</button>
     <button onclick="filter('fav')">❤️ Favorites</button>
-    <button onclick="filter('recent')">⏱ Recent</button>
+    <button onclick="filter('recent')">⏱ Recently Played</button>
+    <button onclick="renderRecommended()">✨ Recommended</button>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
 <div class="topbar">
-    <h1>Game Hub Ultimate</h1>
-    <div id="user">Guest</div>
+    <h1>Game Hub Final</h1>
+    <div id="stats">Loading...</div>
 </div>
 
 <div class="search">
@@ -399,16 +189,8 @@ body {
 <!-- GAMES -->
 <div class="grid">
 
-<!-- GAME 1 -->
-<div class="card" data-type="trending" data-name="Geometry Dash" onclick="openGame(this)">
-<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
-<div class="card-content">
-Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
-<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash">Play</a>
-</div>
-</div>
+<!-- PELIT -->
 
-<!-- GAME 2 -->
 <div class="card" data-type="trending" data-name="Ping Pong Duel" onclick="openGame(this)">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Table_tennis_table.jpg">
 <div class="card-content">
@@ -417,8 +199,7 @@ Ping Pong Duel <span class="like" onclick="like(event,this)">♡</span><br>
 </div>
 </div>
 
-<!-- GAME 3 -->
-<div class="card" data-type="new" data-name="Auto Arena" onclick="openGame(this)">
+<div class="card" data-type="trending" data-name="Auto Arena" onclick="openGame(this)">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Car_race.jpg">
 <div class="card-content">
 Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
@@ -426,7 +207,46 @@ Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
 </div>
 </div>
 
-<!-- GAME 4 -->
+<div class="card" data-type="trending" data-name="Geometry Challenge" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
+<div class="card-content">
+Geometry Challenge <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Challenge">Play</a>
+</div>
+</div>
+
+<div class="card" data-type="trending" data-name="Geometry Dash" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
+<div class="card-content">
+Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash">Play</a>
+</div>
+</div>
+
+<div class="card" data-type="new" data-name="Geometry Leveler" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
+<div class="card-content">
+Geometry Leveler <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Leveler">Play</a>
+</div>
+</div>
+
+<div class="card" data-type="new" data-name="Geometry Dash Levels" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
+<div class="card-content">
+Geometry Dash Levels <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash-Levels">Play</a>
+</div>
+</div>
+
+<div class="card" data-type="new" data-name="Connect Four" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Connect_Four.jpg">
+<div class="card-content">
+Connect Four <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@aadarantala/Connect-Four">Play</a>
+</div>
+</div>
+
 <div class="card" data-type="new" data-name="Buzzle Masters" onclick="openGame(this)">
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
 <div class="card-content">
@@ -436,11 +256,11 @@ Buzzle Masters <span class="like" onclick="like(event,this)">♡</span><br>
 </div>
 
 </div>
-
 </div>
 
 <!-- PLAYER -->
-<div id="player" onclick="closeGame()">
+<div id="player">
+<button class="close" onclick="closeGame()">X</button>
 <iframe id="frame"></iframe>
 </div>
 
@@ -449,17 +269,6 @@ Buzzle Masters <span class="like" onclick="like(event,this)">♡</span><br>
 let favs = JSON.parse(localStorage.getItem("favs") || "[]");
 let recent = JSON.parse(localStorage.getItem("recent") || "[]");
 
-document.getElementById("user").innerText =
-localStorage.getItem("user") || "Guest";
-
-/* SEARCH */
-function searchGames(v){
-    document.querySelectorAll(".card").forEach(c=>{
-        c.style.display = c.innerText.toLowerCase().includes(v.toLowerCase()) ? "block":"none";
-    });
-}
-
-/* LIKE */
 function like(e, el){
     e.stopPropagation();
     let name = el.closest(".card").dataset.name;
@@ -473,29 +282,34 @@ function like(e, el){
     }
 
     localStorage.setItem("favs", JSON.stringify(favs));
+    updateStats();
 }
 
-/* OPEN GAME */
 function openGame(card){
     let link = card.querySelector(".play").dataset.link;
 
     document.getElementById("frame").src = link;
     document.getElementById("player").style.display = "block";
 
-    // recent
     let name = card.dataset.name;
     recent.unshift(name);
     recent = [...new Set(recent)].slice(0,5);
     localStorage.setItem("recent", JSON.stringify(recent));
+
+    updateStats();
 }
 
-/* CLOSE */
 function closeGame(){
     document.getElementById("player").style.display = "none";
     document.getElementById("frame").src = "";
 }
 
-/* FILTER */
+function searchGames(v){
+    document.querySelectorAll(".card").forEach(c=>{
+        c.style.display = c.innerText.toLowerCase().includes(v.toLowerCase()) ? "block":"none";
+    });
+}
+
 function filter(type){
     document.querySelectorAll(".card").forEach(c=>{
         if(type === "all") c.style.display = "block";
@@ -504,6 +318,336 @@ function filter(type){
         else c.style.display = c.dataset.type === type ? "block":"none";
     });
 }
+
+function renderRecommended(){
+    document.querySelectorAll(".card").forEach(c=>{
+        c.style.display = (Math.random() > 0.4) ? "block":"none";
+    });
+}
+
+function updateStats(){
+    document.getElementById("stats").innerText =
+    "❤️ " + favs.length + " | ⏱ " + recent.length + " recent";
+}
+
+updateStats();
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Hub Steam</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0e141b;
+    color: white;
+    display: flex;
+}
+
+/* SIDEBAR (Steam style) */
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background: #171a21;
+    position: fixed;
+    padding: 15px;
+}
+
+.sidebar h2 {
+    color: #66c0f4;
+}
+
+.sidebar button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background: #2a475e;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background: #66c0f4;
+    color: black;
+}
+
+/* MAIN */
+.main {
+    margin-left: 240px;
+    width: 100%;
+}
+
+/* TOP BAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #171a21;
+    position: sticky;
+    top: 0;
+}
+
+.topbar h1 {
+    color: #66c0f4;
+}
+
+/* HERO (FEATURED GAME) */
+.hero {
+    margin: 15px;
+    height: 220px;
+    background: linear-gradient(135deg, #66c0f4, #1b2838);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero h2 {
+    margin: 0;
+}
+
+/* SECTIONS */
+.section {
+    padding: 10px 15px;
+}
+
+.section h3 {
+    color: #66c0f4;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+/* CARD (Steam capsule style) */
+.card {
+    background: #1b2838;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #66c0f4;
+}
+
+.card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px;
+}
+
+.play {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px;
+    background: #66c0f4;
+    color: black;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.like {
+    float: right;
+    cursor: pointer;
+}
+
+/* PLAYER */
+#player {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 999;
+}
+
+#player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>🎮 Game Hub</h2>
+    <button onclick="filter('all')">Store</button>
+    <button onclick="filter('trending')">🔥 Trending</button>
+    <button onclick="filter('new')">🆕 New Releases</button>
+    <button onclick="filter('fav')">❤️ Favorites</button>
+    <button onclick="filter('recent')">⏱ Recently Played</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+    <h1>Game Hub Steam Edition</h1>
+    <div id="stats"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <h2>🔥 Featured Game</h2>
+        <p>Geometry Dash - Jump into the action</p>
+        <button class="play" onclick="openLink('https://replit.com/@AaKaRa/Geometry-Dash')">Play Now</button>
+    </div>
+</div>
+
+<!-- TRENDING -->
+<div class="section">
+<h3>🔥 Trending</h3>
+<div class="grid">
+
+<div class="card" data-type="trending" data-name="Geometry Dash" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
+<div class="card-content">
+Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@AaKaRa/Geometry-Dash">Play</a>
+</div>
+</div>
+
+<div class="card" data-type="trending" data-name="Ping Pong Duel" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Table_tennis_table.jpg">
+<div class="card-content">
+Ping Pong Duel <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@Rantala12/Ping-Pong-Duel">Play</a>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- NEW -->
+<div class="section">
+<h3>🆕 New Releases</h3>
+<div class="grid">
+
+<div class="card" data-type="new" data-name="Auto Arena" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Car_race.jpg">
+<div class="card-content">
+Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@Rantala12/Auto-Arena">Play</a>
+</div>
+</div>
+
+<div class="card" data-type="new" data-name="Connect Four" onclick="openGame(this)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Connect_Four.jpg">
+<div class="card-content">
+Connect Four <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" data-link="https://replit.com/@aadarantala/Connect-Four">Play</a>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<!-- PLAYER -->
+<div id="player">
+<button class="close" onclick="closeGame()">X</button>
+<iframe id="frame"></iframe>
+</div>
+
+<script>
+
+let favs = JSON.parse(localStorage.getItem("favs") || "[]");
+let recent = JSON.parse(localStorage.getItem("recent") || "[]");
+
+function like(e, el){
+    e.stopPropagation();
+    let name = el.closest(".card").dataset.name;
+
+    if(favs.includes(name)){
+        favs = favs.filter(f => f !== name);
+        el.innerText = "♡";
+    } else {
+        favs.push(name);
+        el.innerText = "❤️";
+    }
+
+    localStorage.setItem("favs", JSON.stringify(favs));
+    updateStats();
+}
+
+function openGame(card){
+    let link = card.querySelector(".play").dataset.link;
+    document.getElementById("frame").src = link;
+    document.getElementById("player").style.display = "block";
+
+    let name = card.dataset.name;
+    recent.unshift(name);
+    recent = [...new Set(recent)].slice(0,5);
+    localStorage.setItem("recent", JSON.stringify(recent));
+
+    updateStats();
+}
+
+function openLink(link){
+    document.getElementById("frame").src = link;
+    document.getElementById("player").style.display = "block";
+}
+
+function closeGame(){
+    document.getElementById("player").style.display = "none";
+    document.getElementById("frame").src = "";
+}
+
+function filter(type){
+    document.querySelectorAll(".card").forEach(c=>{
+        if(type === "all") c.style.display = "block";
+        else if(type === "fav") c.style.display = favs.includes(c.dataset.name) ? "block":"none";
+        else if(type === "recent") c.style.display = recent.includes(c.dataset.name) ? "block":"none";
+        else c.style.display = c.dataset.type === type ? "block":"none";
+    });
+}
+
+function updateStats(){
+    document.getElementById("stats").innerText =
+    "❤️ " + favs.length + " | ⏱ " + recent.length;
+}
+
+updateStats();
 
 </script>
 
