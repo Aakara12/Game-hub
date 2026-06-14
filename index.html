@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Hub</title>
+<title>Game Hub Pro Max</title>
 
 <style>
 body {
@@ -11,43 +11,64 @@ body {
     font-family: Arial;
     background: #0b0f1a;
     color: white;
-}
-
-/* NAV */
-.nav {
     display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: #111827;
 }
 
-.nav button {
-    padding: 8px 12px;
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: #0f172a;
+    height: 100vh;
+    padding: 15px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    color: #00ffcc;
+}
+
+.sidebar button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
     border: none;
-    background: #00ffcc;
-    font-weight: bold;
+    background: #1f2937;
+    color: white;
     cursor: pointer;
     border-radius: 6px;
 }
 
-/* SEARCH */
-.search {
-    text-align: center;
-    margin: 15px;
+.sidebar button:hover {
+    background: #00ffcc;
+    color: black;
 }
 
-.search input {
-    width: 60%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
+/* MAIN */
+.main {
+    margin-left: 240px;
+    width: 100%;
 }
 
-/* CATEGORY */
-.cat {
-    color: #00ffcc;
-    font-weight: bold;
+/* TOP BAR */
+.topbar {
     padding: 15px;
+    background: #111827;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar h1 {
+    color: #00ffcc;
+}
+
+/* SECTIONS */
+.section {
+    padding: 20px;
+}
+
+.section h3 {
+    color: #00ffcc;
 }
 
 /* GRID */
@@ -55,129 +76,153 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
-    padding: 0 15px 20px;
 }
 
 /* CARD */
 .card {
     background: #1f2937;
-    padding: 12px;
     border-radius: 12px;
+    overflow: hidden;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
-.card a {
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px;
+}
+
+.play {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 8px;
+    padding: 6px;
     background: #00ffcc;
-    padding: 8px;
-    border-radius: 6px;
-    text-decoration: none;
     color: black;
+    text-decoration: none;
+    border-radius: 6px;
     font-weight: bold;
+}
+
+.like {
+    float: right;
+    cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="nav">
-    <div>🎮 Game Hub</div>
-    <div>
-        <button onclick="showHome()">Home</button>
-        <button onclick="showProfile()">Profile</button>
-    </div>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>🎮 Game Hub</h2>
+    <button onclick="filter('all')">All Games</button>
+    <button onclick="filter('trending')">🔥 Trending</button>
+    <button onclick="filter('new')">🆕 New</button>
+    <button onclick="filter('fav')">❤️ Favorites</button>
 </div>
 
-<!-- HOME -->
-<div id="home">
+<!-- MAIN -->
+<div class="main">
 
-<div class="search">
-    <input onkeyup="searchGames(this.value)" placeholder="Search games...">
+<div class="topbar">
+    <h1>Game Hub Pro Max</h1>
+    <div id="user">Guest</div>
 </div>
 
-<div class="cat">Arcade</div>
+<!-- TRENDING -->
+<div class="section" data-type="trending">
+<h3>🔥 Trending</h3>
+
 <div class="grid">
 
-<div class="card">
-    <div>🏓 Ping Pong Duel</div>
-    <a href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
+<div class="card" data-type="trending" data-name="Geometry Dash">
+<img src="https://upload.wikimedia.org/wikipedia/en/3/3e/Geometry_Dash_Logo.PNG">
+<div class="card-content">
+Geometry Dash <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" href="https://replit.com/@AaKaRa/Geometry-Dash" target="_blank">Play</a>
+</div>
 </div>
 
-<div class="card">
-    <div>🚗 Auto Arena</div>
-    <a href="https://replit.com/@Rantala12/Auto-Arena" target="_blank">Play</a>
+<div class="card" data-type="trending" data-name="Ping Pong Duel">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Table_tennis_table.jpg">
+<div class="card-content">
+Ping Pong Duel <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" href="https://replit.com/@Rantala12/Ping-Pong-Duel" target="_blank">Play</a>
+</div>
 </div>
 
 </div>
+</div>
 
-<div class="cat">Geometry</div>
+<!-- NEW -->
+<div class="section" data-type="new">
+<h3>🆕 New Games</h3>
+
 <div class="grid">
 
-<div class="card">
-    <div>⬛ Geometry Dash</div>
-    <a href="https://replit.com/@AaKaRa/Geometry-Dash" target="_blank">Play</a>
+<div class="card" data-type="new" data-name="Auto Arena">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Car_race.jpg">
+<div class="card-content">
+Auto Arena <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" href="https://replit.com/@Rantala12/Auto-Arena" target="_blank">Play</a>
+</div>
 </div>
 
-<div class="card">
-    <div>🟦 Geometry Leveler</div>
-    <a href="https://replit.com/@AaKaRa/Geometry-Leveler" target="_blank">Play</a>
+<div class="card" data-type="new" data-name="Buzzle Masters">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jigsaw_puzzle_01.jpg">
+<div class="card-content">
+Buzzle Masters <span class="like" onclick="like(event,this)">♡</span><br>
+<a class="play" href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
 </div>
-
-</div>
-
-<div class="cat">Puzzle</div>
-<div class="grid">
-
-<div class="card">
-    <div>🔴 Connect Four</div>
-    <a href="https://replit.com/@aadarantala/Connect-Four" target="_blank">Play</a>
-</div>
-
-<div class="card">
-    <div>🧩 Buzzle Masters</div>
-    <a href="https://replit.com/@aadarantala/Buzzle-Masters" target="_blank">Play</a>
 </div>
 
 </div>
-
 </div>
 
-<!-- PROFILE -->
-<div id="profile" style="display:none; padding:20px;">
-    <h2>👤 Profile</h2>
-    <p>Name: <span id="name"></span></p>
 </div>
 
 <script>
 
-// HOME / PROFILE FIX
-function showHome() {
-    document.getElementById("home").style.display = "block";
-    document.getElementById("profile").style.display = "none";
-}
+let favs = JSON.parse(localStorage.getItem("favs") || "[]");
 
-function showProfile() {
-    document.getElementById("home").style.display = "none";
-    document.getElementById("profile").style.display = "block";
+function like(e, el){
+    e.stopPropagation();
+    let name = el.closest(".card").dataset.name;
 
-    let n = localStorage.getItem("name");
-    if (!n) {
-        n = prompt("Enter your name:");
-        localStorage.setItem("name", n);
+    if(favs.includes(name)){
+        favs = favs.filter(f => f !== name);
+        el.innerText = "♡";
+    } else {
+        favs.push(name);
+        el.innerText = "❤️";
     }
-    document.getElementById("name").innerText = n;
+
+    localStorage.setItem("favs", JSON.stringify(favs));
 }
 
-// SEARCH FIX (ei riko layoutia)
-function searchGames(value) {
-    value = value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-        let text = card.innerText.toLowerCase();
-        card.style.display = text.includes(value) ? "block" : "none";
+function filter(type){
+    document.querySelectorAll(".card").forEach(card=>{
+        if(type === "all") card.style.display = "block";
+        else if(type === "fav"){
+            let name = card.dataset.name;
+            card.style.display = favs.includes(name) ? "block" : "none";
+        } else {
+            card.style.display = card.dataset.type === type ? "block" : "none";
+        }
     });
 }
+
+document.getElementById("user").innerText =
+localStorage.getItem("user") || "Guest";
 
 </script>
 
