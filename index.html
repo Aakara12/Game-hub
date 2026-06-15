@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Game Hub</title>
 
 <style>
@@ -38,8 +37,7 @@ justify-content:center;
 
 .search{
 padding:12px;
-width:300px;
-max-width:90%;
+width:280px;
 border:none;
 border-radius:10px;
 }
@@ -51,8 +49,6 @@ border-radius:10px;
 cursor:pointer;
 font-weight:bold;
 }
-
-.btn:hover{opacity:.9;}
 
 .stats{
 display:grid;
@@ -70,18 +66,7 @@ text-align:center;
 
 .stat h2{color:#38bdf8;}
 
-.hero{
-margin:20px;
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-padding:30px;
-border-radius:20px;
-}
-
-.hero h2{font-size:2rem;margin-bottom:10px;}
-.hero button{margin-top:15px;}
-
 .section{padding:20px;}
-.section h2{margin-bottom:15px;color:#38bdf8;}
 
 .games{
 display:grid;
@@ -106,17 +91,10 @@ object-fit:cover;
 
 .card-content{padding:15px;}
 
-.card h3{margin-bottom:10px;}
-
-.card p{
-opacity:.8;
-font-size:.9rem;
-}
-
 .card-buttons{
-margin-top:15px;
 display:flex;
 gap:10px;
+margin-top:10px;
 }
 
 .play{
@@ -129,305 +107,13 @@ cursor:pointer;
 flex:1;
 }
 
-.favorite{
-background:#ef4444;
-color:white;
-padding:10px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
 footer{
 padding:30px;
 text-align:center;
 opacity:.7;
 }
-</style>
-</head>
 
-<body>
-
-<header>
-<h1>🎮 Game Hub</h1>
-<p>Play the best games from AaKaRa Studios</p>
-</header>
-
-<div class="topbar">
-
-<input type="text" id="search" class="search" placeholder="Search games...">
-
-<button class="btn" onclick="showAllGames()">🏠 Home</button>
-<button class="btn" onclick="showFavorites()">❤️ Favorites</button>
-<button class="btn" onclick="showRecent()">⏱ Recent</button>
-<button class="btn" onclick="showRecommended()">✨ Recommended</button>
-
-</div>
-
-<div class="stats">
-<div class="stat"><h2 id="level">1</h2><p>Level</p></div>
-<div class="stat"><h2 id="xp">0</h2><p>XP</p></div>
-<div class="stat"><h2 id="played">0</h2><p>Games Played</p></div>
-</div>
-
-<div class="hero">
-<h2>🔥 Featured Game</h2>
-<h3>Geometry Dash</h3>
-<p>Jump, dodge and survive through challenging levels.</p>
-
-<button class="btn"
-onclick="window.open('https://replit.com/@AaKaRa/Geometry-Dash')">
-Play Now
-</button>
-</div>
-
-<div class="section">
-<h2>🎮 Store</h2>
-<div id="gamesContainer" class="games"></div>
-</div>
-
-<footer>
-<p>🎮 Game Hub Ultimate Edition</p>
-<p>Built with ❤️ by AaKaRa</p>
-</footer>
-
-<script>
-
-// 🎮 ONLY ONE GAMES LIST (FIXED)
-const games = [
-{
-name:"Rhythm Runner",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
-description:"Fast rhythm runner game.",
-link:"https://rhythm-runner--aakara.replit.app/"
-},
-{
-name:"Buzzle Masters",
-category:"Puzzle",
-image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
-description:"Puzzle challenge game.",
-link:"https://buzzle-masters--aadarantala.replit.app/"
-},
-{
-name:"8 Ball Pool Online",
-category:"Sports",
-image:"https://images.unsplash.com/photo-1600172454284-9346d31e2fdd?w=800",
-description:"Multiplayer pool game – play against others online.",
-link:"https://8-ball-pool-online-multiplayers--aadarantalaa1.replit.app/"
-},
-{
-name:"Geometry Dash",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
-description:"Coming soon.",
-link:"#"
-},
-{
-name:"Ping Pong Duel",
-category:"Sports",
-image:"https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800",
-description:"Coming soon.",
-link:"#"
-},
-{
-name:"Auto Arena",
-category:"Racing",
-image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800",
-description:"Coming soon.",
-link:"#"
-},
-{
-name:"Connect Four",
-category:"Puzzle",
-image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800",
-description:"Coming soon.",
-link:"#"
-},
-{
-name:"Geometry Challenge",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
-description:"Coming soon.",
-link:"#"
-},
-{
-name:"Geometry Leveler",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800",
-description:"Coming soon.",
-link:"#"
-},
-{
-name:"Geometry Dash Levels",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
-description:"Coming soon.",
-link:"#"
-}
-];
-
-// ===== STATE =====
-let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-let recent = JSON.parse(localStorage.getItem("recent")) || [];
-let xp = parseInt(localStorage.getItem("xp")) || 0;
-let played = parseInt(localStorage.getItem("played")) || 0;
-
-function saveData(){
-localStorage.setItem("favorites", JSON.stringify(favorites));
-localStorage.setItem("recent", JSON.stringify(recent));
-localStorage.setItem("xp", xp);
-localStorage.setItem("played", played);
-}
-
-function updateStats(){
-document.getElementById("xp").innerText = xp;
-document.getElementById("played").innerText = played;
-document.getElementById("level").innerText = Math.floor(xp/100)+1;
-}
-
-function createCard(game){
-let liked = favorites.includes(game.name);
-
-return `
-<div class="card">
-<img src="${game.image}">
-<div class="card-content">
-<h3>${game.name}</h3>
-<p>${game.description}</p>
-<p>🎮 ${game.category}</p>
-
-<div class="card-buttons">
-<button class="play" onclick="playGame('${game.name}')">▶ Play</button>
-<button class="favorite" onclick="toggleFavorite('${game.name}')">${liked ? "❤️" : "🤍"}</button>
-</div>
-
-</div>
-</div>
-`;
-}
-
-function renderGames(list){
-document.getElementById("gamesContainer").innerHTML =
-list.map(createCard).join("");
-}
-
-function playGame(name){
-const game = games.find(g => g.name === name);
-if(!game) return;
-
-if(game.link === "#"){
-alert("Coming soon 🆕");
-return;
-}
-
-played++;
-xp += 25;
-
-recent = recent.filter(g => g !== name);
-recent.unshift(name);
-
-if(recent.length > 8) recent.pop();
-
-saveData();
-updateStats();
-
-window.open(game.link, "_blank");
-}
-
-function toggleFavorite(name){
-if(favorites.includes(name)){
-favorites = favorites.filter(g => g !== name);
-}else{
-favorites.push(name);
-}
-
-saveData();
-renderGames(games);
-}
-
-function showAllGames(){ renderGames(games); }
-
-function showFavorites(){
-renderGames(games.filter(g => favorites.includes(g.name)));
-}
-
-function showRecent(){
-const list = [];
-recent.forEach(name => {
-const g = games.find(x => x.name === name);
-if(g) list.push(g);
-});
-renderGames(list);
-}
-
-function showRecommended(){
-let rec = [];
-if(favorites.length){
-rec = games.filter(g =>
-favorites.some(f => {
-const fav = games.find(x => x.name === f);
-return fav && fav.category === g.category;
-})
-);
-}else{
-rec = games.slice(0,4);
-}
-renderGames(rec);
-}
-
-document.getElementById("search").addEventListener("input", function(){
-const val = this.value.toLowerCase();
-renderGames(
-games.filter(g =>
-g.name.toLowerCase().includes(val) ||
-g.category.toLowerCase().includes(val)
-)
-);
-});
-
-// INIT
-renderGames(games);
-updateStats();
-
-</script>
-const VIP_CODE = "GAMEHUB2026";
-
-function login(){
-const code = document.getElementById("vipCode").value;
-
-if(code === VIP_CODE){
-localStorage.setItem("vip", "true");
-document.getElementById("loginStatus").innerText = "✅ VIP UNLOCKED";
-enableVIP();
-}else{
-document.getElementById("loginStatus").innerText = "❌ Wrong code";
-}
-}
-
-function logout(){
-localStorage.removeItem("vip");
-document.getElementById("loginStatus").innerText = "Logged out";
-disableVIP();
-}
-
-function isVIP(){
-return localStorage.getItem("vip") === "true";
-}
-  function enableVIP(){
-document.getElementById("vipSection").style.display = "block";
-}
-
-function disableVIP(){
-document.getElementById("vipSection").style.display = "none";
-}
-
-if(isVIP()){
-enableVIP();
-}
-</body>
-
-</html>
+/* LOGIN */
 .loginBox{
 display:flex;
 gap:10px;
@@ -441,18 +127,137 @@ padding:10px;
 border-radius:10px;
 border:none;
 width:180px;
-<div id="vipSection" class="section" style="display:none;">
-<h2>🔐 VIP GAMES</h2>
-<p>Secret area unlocked!</p>
-
-<div class="games">
-  <!-- VIP games here -->
-</div>
-</div>
 }
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎮 Game Hub</h1>
+<p>Play the best games from AaKaRa Studios</p>
+</header>
+
+<!-- LOGIN -->
 <div class="loginBox">
-  <input type="password" id="vipCode" placeholder="Enter VIP code">
-  <button class="btn" onclick="login()">Login</button>
-  <button class="btn" onclick="logout()">Logout</button>
-  <span id="loginStatus"></span>
+<input type="password" id="vipCode" placeholder="Enter VIP code">
+<button class="btn" onclick="login()">Login</button>
+<button class="btn" onclick="logout()">Logout</button>
+<span id="loginStatus"></span>
 </div>
+
+<div class="topbar">
+<input class="search" id="search" placeholder="Search games...">
+
+<button class="btn" onclick="showAll()">Home</button>
+<button class="btn" onclick="showVIP()">VIP</button>
+</div>
+
+<div class="stats">
+<div class="stat"><h2 id="level">1</h2><p>Level</p></div>
+<div class="stat"><h2 id="xp">0</h2><p>XP</p></div>
+<div class="stat"><h2 id="played">0</h2><p>Played</p></div>
+</div>
+
+<div class="section">
+<h2>🎮 Store</h2>
+<div id="games"></div>
+</div>
+
+<footer>
+<p>Game Hub Ultimate</p>
+</footer>
+<script>
+
+const VIP_CODE = "GAMEHUB2026";
+
+function login(){
+const code = document.getElementById("vipCode").value;
+
+if(code === VIP_CODE){
+localStorage.setItem("vip","true");
+document.getElementById("loginStatus").innerText="✅ VIP unlocked";
+render(games);
+}else{
+document.getElementById("loginStatus").innerText="❌ Wrong code";
+}
+}
+
+function logout(){
+localStorage.removeItem("vip");
+document.getElementById("loginStatus").innerText="Logged out";
+render(games);
+}
+
+function isVIP(){
+return localStorage.getItem("vip")==="true";
+}
+
+function showVIP(){
+if(!isVIP()){
+alert("VIP only 🔒");
+return;
+}
+render(games.filter(g=>g.vip));
+}
+
+function showAll(){
+render(games);
+}
+
+// 🎮 GAMES
+const games = [
+{
+name:"Rhythm Runner",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800",
+link:"https://rhythm-runner--aakara.replit.app/",
+vip:false
+},
+{
+name:"Buzzle Masters",
+category:"Puzzle",
+image:"https://images.unsplash.com/photo-1553484771-047a44eee27b?w=800",
+link:"https://buzzle-masters--aadarantala.replit.app/",
+vip:false
+},
+{
+name:"8 Ball Pool Online",
+category:"Sports",
+image:"https://images.unsplash.com/photo-1600172454284-9346d31e2fdd?w=800",
+link:"https://8-ball-pool-online-multiplayers--aadarantalaa1.replit.app/",
+vip:false
+},
+{
+name:"Geometry Dash",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1627856014754-2907e2345c7f?w=800",
+link:"#",
+vip:false
+}
+];
+
+function render(list){
+document.getElementById("games").innerHTML =
+list.map(g=>`
+<div class="card">
+<img src="${g.image}">
+<div class="card-content">
+<h3>${g.name}</h3>
+<p>${g.category}</p>
+
+<div class="card-buttons">
+<button class="play" onclick="window.open('${g.link}','_blank')">Play</button>
+</div>
+
+</div>
+</div>
+`).join("");
+}
+
+render(games);
+
+</script>
+
+</body>
+</html>
