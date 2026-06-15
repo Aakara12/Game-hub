@@ -203,7 +203,9 @@ placeholder="Search games..."
 </button>
   
 <h2>🎮 Store</h2>
-  
+
+<div id="gamesContainer" class="games"></div>
+
 <button class="btn" onclick="showFavorites()">
 ❤️ Favorites
 </button>
@@ -261,79 +263,26 @@ Play Now
 <div
 id="gamesContainer"
 class="games">
-</div>
+</div
+
 const games = [
+  {
+    name:"Rhythm Runner",
+    category:"Arcade",
+    image:"https://geometry-dash.fandom.com/wiki/Main_Levels?file=StereoMadness.png",
+    description:"Fast rhythm runner game.",
+    link:"https://rhythm-runner--aakara.replit.app/"
+  },
+  ...
+];
 
-{
-name:"Rhythm Runner",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
-description:"Fast rhythm runner game.",
-link:"https://rhythm-runner--aakara.replit.app/"
-},
-
+];
 {
 name:"Buzzle Masters",
 category:"Puzzle",
-image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
+image:"https://www.behance.net/gallery/54572657/Puzzle-Masters",
 description:"Puzzle challenge game.",
 link:"https://buzzle-masters--aadarantala.replit.app/"
-},
-
-{
-name:"Geometry Dash",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
-description:"Coming soon.",
-link:"#"
-},
-
-{
-name:"Ping Pong Duel",
-category:"Sports",
-image:"https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800",
-description:"Coming soon.",
-link:"#"
-},
-
-{
-name:"Auto Arena",
-category:"Racing",
-image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800",
-description:"Coming soon.",
-link:"#"
-},
-
-{
-name:"Connect Four",
-category:"Puzzle",
-image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800",
-description:"Coming soon.",
-link:"#"
-},
-
-{
-name:"Geometry Challenge",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
-description:"Coming soon.",
-link:"#"
-},
-
-{
-name:"Geometry Leveler",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800",
-description:"Coming soon.",
-link:"#"
-},
-
-{
-name:"Geometry Dash Levels",
-category:"Arcade",
-image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
-description:"Coming soon.",
-link:"#"
 }
 
 ];
