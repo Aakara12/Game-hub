@@ -7,7 +7,6 @@
 <title>Game Hub</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -26,14 +25,8 @@ padding:30px;
 text-align:center;
 }
 
-header h1{
-font-size:3rem;
-}
-
-header p{
-margin-top:10px;
-opacity:.9;
-}
+header h1{font-size:3rem;}
+header p{margin-top:10px;opacity:.9;}
 
 .topbar{
 padding:20px;
@@ -59,14 +52,11 @@ cursor:pointer;
 font-weight:bold;
 }
 
-.btn:hover{
-opacity:.9;
-}
+.btn:hover{opacity:.9;}
 
 .stats{
 display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(180px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:15px;
 padding:20px;
 }
@@ -78,43 +68,24 @@ border-radius:15px;
 text-align:center;
 }
 
-.stat h2{
-color:#38bdf8;
-}
+.stat h2{color:#38bdf8;}
 
 .hero{
 margin:20px;
-background:linear-gradient(
-135deg,
-#2563eb,
-#7c3aed
-);
+background:linear-gradient(135deg,#2563eb,#7c3aed);
 padding:30px;
 border-radius:20px;
 }
 
-.hero h2{
-font-size:2rem;
-margin-bottom:10px;
-}
+.hero h2{font-size:2rem;margin-bottom:10px;}
+.hero button{margin-top:15px;}
 
-.hero button{
-margin-top:15px;
-}
-
-.section{
-padding:20px;
-}
-
-.section h2{
-margin-bottom:15px;
-color:#38bdf8;
-}
+.section{padding:20px;}
+.section h2{margin-bottom:15px;color:#38bdf8;}
 
 .games{
 display:grid;
-grid-template-columns:
-repeat(auto-fill,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
 gap:20px;
 }
 
@@ -125,9 +96,7 @@ overflow:hidden;
 transition:.25s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-}
+.card:hover{transform:translateY(-5px);}
 
 .card img{
 width:100%;
@@ -135,13 +104,9 @@ height:150px;
 object-fit:cover;
 }
 
-.card-content{
-padding:15px;
-}
+.card-content{padding:15px;}
 
-.card h3{
-margin-bottom:10px;
-}
+.card h3{margin-bottom:10px;}
 
 .card p{
 opacity:.8;
@@ -178,7 +143,6 @@ padding:30px;
 text-align:center;
 opacity:.7;
 }
-
 </style>
 </head>
 
@@ -191,67 +155,30 @@ opacity:.7;
 
 <div class="topbar">
 
-<input
-type="text"
-id="search"
-class="search"
-placeholder="Search games..."
->
+<input type="text" id="search" class="search" placeholder="Search games...">
 
-<button class="btn" onclick="showAllGames()">
-🏠 Home
-</button>
-  
-<h2>🎮 Store</h2>
-
-<div id="gamesContainer" class="games"></div>
-
-<button class="btn" onclick="showFavorites()">
-❤️ Favorites
-</button>
-
-<button class="btn" onclick="showRecent()">
-⏱ Recent
-</button>
-
-<button class="btn" onclick="showRecommended()">
-✨ Recommended
-</button>
+<button class="btn" onclick="showAllGames()">🏠 Home</button>
+<button class="btn" onclick="showFavorites()">❤️ Favorites</button>
+<button class="btn" onclick="showRecent()">⏱ Recent</button>
+<button class="btn" onclick="showRecommended()">✨ Recommended</button>
 
 </div>
 
 <div class="stats">
 
-<div class="stat">
-<h2 id="level">1</h2>
-<p>Level</p>
-</div>
-
-<div class="stat">
-<h2 id="xp">0</h2>
-<p>XP</p>
-</div>
-
-<div class="stat">
-<h2 id="played">0</h2>
-<p>Games Played</p>
-</div>
+<div class="stat"><h2 id="level">1</h2><p>Level</p></div>
+<div class="stat"><h2 id="xp">0</h2><p>XP</p></div>
+<div class="stat"><h2 id="played">0</h2><p>Games Played</p></div>
 
 </div>
 
 <div class="hero">
 
 <h2>🔥 Featured Game</h2>
-
 <h3>Geometry Dash</h3>
+<p>Jump, dodge and survive through challenging levels.</p>
 
-<p>
-Jump, dodge and survive
-through challenging levels.
-</p>
-
-<button
-class="btn"
+<button class="btn"
 onclick="window.open('https://replit.com/@AaKaRa/Geometry-Dash')">
 Play Now
 </button>
@@ -259,30 +186,253 @@ Play Now
 </div>
 
 <div class="section">
+<h2>🎮 Store</h2>
 
-<div
-id="gamesContainer"
-class="games">
-</div
+<div id="gamesContainer" class="games"></div>
+</div>
 
+<footer>
+<p>🎮 Game Hub Ultimate Edition</p>
+<p>Built with ❤️ by AaKaRa</p>
+</footer>
+
+<script>
+// ===== GAMES =====
 const games = [
-  {
-    name:"Rhythm Runner",
-    category:"Arcade",
-    image:"https://geometry-dash.fandom.com/wiki/Main_Levels?file=StereoMadness.png",
-    description:"Fast rhythm runner game.",
-    link:"https://rhythm-runner--aakara.replit.app/"
-  },
-  ...
-];
-
-];
+{
+name:"Rhythm Runner",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
+description:"Fast rhythm runner game.",
+link:"https://rhythm-runner--aakara.replit.app/"
+},
 {
 name:"Buzzle Masters",
 category:"Puzzle",
-image:"https://www.behance.net/gallery/54572657/Puzzle-Masters",
+image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
 description:"Puzzle challenge game.",
 link:"https://buzzle-masters--aadarantala.replit.app/"
+},
+{
+name:"Geometry Dash",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
+description:"Coming soon.",
+link:"#"
+},
+{
+name:"Ping Pong Duel",
+category:"Sports",
+image:"https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800",
+description:"Coming soon.",
+link:"#"
+},
+{
+name:"Auto Arena",
+category:"Racing",
+image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800",
+description:"Coming soon.",
+link:"#"
+},
+{
+name:"Connect Four",
+category:"Puzzle",
+image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800",
+description:"Coming soon.",
+link:"#"
+},
+{
+name:"Geometry Challenge",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
+description:"Coming soon.",
+link:"#"
+},
+{
+name:"Geometry Leveler",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800",
+description:"Coming soon.",
+link:"#"
+},
+{
+name:"Geometry Dash Levels",
+category:"Arcade",
+image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800",
+description:"Coming soon.",
+link:"#"
+}
+];
+
+// ===== STATE =====
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+let recent = JSON.parse(localStorage.getItem("recent")) || [];
+let xp = parseInt(localStorage.getItem("xp")) || 0;
+let played = parseInt(localStorage.getItem("played")) || 0;
+
+function saveData(){
+localStorage.setItem("favorites", JSON.stringify(favorites));
+localStorage.setItem("recent", JSON.stringify(recent));
+localStorage.setItem("xp", xp);
+localStorage.setItem("played", played);
 }
 
+function updateStats(){
+document.getElementById("xp").innerText = xp;
+document.getElementById("played").innerText = played;
+document.getElementById("level").innerText = Math.floor(xp/100)+1;
+}
+
+function createCard(game){
+let liked = favorites.includes(game.name);
+
+return `
+<div class="card">
+<img src="${game.image}">
+<div class="card-content">
+<h3>${game.name}</h3>
+<p>${game.description}</p>
+<p>🎮 ${game.category}</p>
+
+<div class="card-buttons">
+<button class="play" onclick="playGame('${game.name}')">▶ Play</button>
+<button class="favorite" onclick="toggleFavorite('${game.name}')">${liked ? "❤️" : "🤍"}</button>
+</div>
+
+</div>
+</div>
+`;
+}
+
+function renderGames(list){
+document.getElementById("gamesContainer").innerHTML =
+list.map(createCard).join("");
+}
+
+function playGame(name){
+const game = games.find(g => g.name === name);
+if(!game) return;
+
+if(game.link === "#"){
+alert("Coming soon 🆕");
+return;
+}
+
+played++;
+xp += 25;
+
+recent = recent.filter(g => g !== name);
+recent.unshift(name);
+
+if(recent.length > 8) recent.pop();
+
+saveData();
+updateStats();
+
+window.open(game.link, "_blank");
+}
+
+function toggleFavorite(name){
+if(favorites.includes(name)){
+favorites = favorites.filter(g => g !== name);
+} else {
+favorites.push(name);
+}
+
+saveData();
+renderGames(games);
+}
+
+function showFavorites(){
+renderGames(games.filter(g => favorites.includes(g.name)));
+}
+
+function showRecent(){
+const recentGames = [];
+recent.forEach(name => {
+const g = games.find(x => x.name === name);
+if(g) recentGames.push(g);
+});
+renderGames(recentGames);
+}
+
+function showAllGames(){
+renderGames(games);
+}
+
+function showRecommended(){
+let rec = [];
+
+if(favorites.length){
+rec = games.filter(g =>
+favorites.some(f => {
+const fav = games.find(x => x.name === f);
+return fav && fav.category === g.category;
+})
+);
+} else {
+rec = games.slice(0,4);
+}
+
+renderGames(rec);
+}
+
+document.getElementById("search").addEventListener("input", function(){
+const val = this.value.toLowerCase();
+renderGames(
+games.filter(g =>
+g.name.toLowerCase().includes(val) ||
+g.category.toLowerCase().includes(val)
+)
+);
+});
+
+function getAchievements(){
+return [
+{ name:"🎮 First Game", desc:"Play 1 game", unlocked: played >= 1 },
+{ name:"🔥 Gamer", desc:"Play 5 games", unlocked: played >= 5 },
+{ name:"🏆 Pro Gamer", desc:"Play 20 games", unlocked: played >= 20 },
+{ name:"❤️ Collector", desc:"Favorite 3 games", unlocked: favorites.length >= 3 },
+{ name:"⭐ Level Up", desc:"Reach Level 5", unlocked: Math.floor(xp/100)+1 >= 5 }
 ];
+}
+
+function renderAchievements(){
+const old = document.getElementById("achievementSection");
+if(old) old.remove();
+
+const section = document.createElement("div");
+section.className = "section";
+section.id = "achievementSection";
+
+section.innerHTML = `
+<h2>🏆 Achievements</h2>
+<div class="games">
+${getAchievements().map(a => `
+<div class="card">
+<div class="card-content">
+<h3>${a.name}</h3>
+<p>${a.desc}</p>
+<p>${a.unlocked ? "✅ Unlocked" : "🔒 Locked"}</p>
+</div>
+</div>
+`).join("")}
+</div>
+`;
+
+document.body.appendChild(section);
+}
+
+const oldUpdateStats = updateStats;
+updateStats = function(){
+oldUpdateStats();
+renderAchievements();
+};
+
+renderGames(games);
+updateStats();
+renderAchievements();
+</script>
+
+</body>
+</html>
