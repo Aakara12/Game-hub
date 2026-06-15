@@ -391,6 +391,68 @@ renderGames(games);
 updateStats();
 
 </script>
+const VIP_CODE = "GAMEHUB2026";
 
+function login(){
+const code = document.getElementById("vipCode").value;
+
+if(code === VIP_CODE){
+localStorage.setItem("vip", "true");
+document.getElementById("loginStatus").innerText = "✅ VIP UNLOCKED";
+enableVIP();
+}else{
+document.getElementById("loginStatus").innerText = "❌ Wrong code";
+}
+}
+
+function logout(){
+localStorage.removeItem("vip");
+document.getElementById("loginStatus").innerText = "Logged out";
+disableVIP();
+}
+
+function isVIP(){
+return localStorage.getItem("vip") === "true";
+}
+  function enableVIP(){
+document.getElementById("vipSection").style.display = "block";
+}
+
+function disableVIP(){
+document.getElementById("vipSection").style.display = "none";
+}
+
+if(isVIP()){
+enableVIP();
+}
 </body>
+
 </html>
+.loginBox{
+display:flex;
+gap:10px;
+justify-content:center;
+padding:10px;
+flex-wrap:wrap;
+}
+
+.loginBox input{
+padding:10px;
+border-radius:10px;
+border:none;
+width:180px;
+<div id="vipSection" class="section" style="display:none;">
+<h2>🔐 VIP GAMES</h2>
+<p>Secret area unlocked!</p>
+
+<div class="games">
+  <!-- VIP games here -->
+</div>
+</div>
+}
+<div class="loginBox">
+  <input type="password" id="vipCode" placeholder="Enter VIP code">
+  <button class="btn" onclick="login()">Login</button>
+  <button class="btn" onclick="logout()">Logout</button>
+  <span id="loginStatus"></span>
+</div>
