@@ -192,7 +192,41 @@ opacity:.7;
 <span id="loginStatus"></span>
 </div>
   const VIP_CODE = "GAMEHUB2026";
+function enableVIP(){
 
+document.getElementById("vipSection").style.display = "block";
+
+document.getElementById("vipGamesContainer").innerHTML =
+
+vipGames.map(game => `
+
+<div class="card vip-card">
+
+<img src="${game.image}">
+
+<div class="card-content">
+
+<h3>${game.name}</h3>
+
+<p>${game.description}</p>
+
+<div class="card-buttons">
+
+<button
+class="play"
+onclick="window.open('${game.link}','_blank')">
+▶ Play
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
 const vipGames = [
 
 {
